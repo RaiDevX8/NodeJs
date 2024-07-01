@@ -38,10 +38,10 @@ const smapleAccount = [
     last_updated: new Date(),
   },
 ]
-// const documenntofind = { balance: { $gt: 700 } } //find many
-const documenntofind = {
-  _id: new ObjectId('668185c2781c2a5cb25c3342'),
-}
+const documenntofind = { balance: { $gt: 700 } } //find many
+// const documenntofind = {
+//   _id: new ObjectId('668185c2781c2a5cb25c3342'),
+// }
 const main = async () => {
   try {
     await connectToDatabase()
@@ -62,21 +62,34 @@ const main = async () => {
 
     //UPDATE
 
-    let updatefilter = { _id: new ObjectId('668185c2781c2a5cb25c3342') }
+    // let updatefilter = { _id: new ObjectId('668185c2781c2a5cb25c3342') }
     // let updateQuery={$inc :{balance :10000}} // FOR UPDATE ONE
 
-    let updateQuery = { $push: { transfer_complete: '38hbfdjb39u' } }
+    // let updateQuery = { $push: { transfer_complete: '38hbfdjb39u' } }
 
     //UPDATE ONE
     // let result = await accountCollection.updateOne(updatefilter,updateQuery)
 
     //UPDATE MANY
-    let result = await accountCollection.updateMany(updatefilter, updateQuery)
+    // let result = await accountCollection.updateMany(updatefilter, updateQuery)
 
     //check
-    result.modifiedCount > 0
-      ? console.log(`updated ${result.modifiedCount}`)
-      : console.log('not done')
+    // result.modifiedCount > 0
+    //   ? console.log(`updated ${result.modifiedCount}`)
+    //   : console.log('not done')
+
+    //DELETE ONE
+
+    // let result = await accountCollection.deleteOne(documenntofind)
+
+    //DELETE MANY
+
+    // let result = await accountCollection.deleteMany(documenntofind)
+
+    //DELETE ALL
+
+    // let result = await accountCollection.deleteMany();
+
     console.log(result)
   } catch (err) {
     console.error(`Error in main function: ${err}`)
