@@ -29,7 +29,13 @@
       "name": "bbc",
       "quantity": 5,
       "price": 0.6
+    },
+    {
+      "id": 9,
+      "name": "bbc",
+      "quantity": 5,
+      "price": 0.6
     }
   ],
-  "totalPrice": 8.75
+  "totalPrice": 11.75
 }

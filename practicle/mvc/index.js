@@ -1,3 +1,4 @@
+const { log } = require('console')
 const express = require('express')
 const fs = require('fs')
 const path = require('path')
@@ -26,6 +27,11 @@ fs.readFile(p, 'utf8', (err, data) => {
     console.log('Invalid cart data structure')
     return
   }
+
+  app.get('/',(req,res)=>
+  {
+    console.log(req.query);
+  })
 
   const newItem = {
     id: 9,

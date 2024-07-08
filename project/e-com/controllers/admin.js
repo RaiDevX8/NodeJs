@@ -1,14 +1,24 @@
 const Product = require('../models/product');
 
 exports.getAddProduct = (req, res, next) => {
-  res.render('admin/add-product', {
+  res.render('admin/edit-product', {
     pageTitle: 'Add Product',
-    path: '/admin/add-product',
-    formsCSS: true,
-    productCSS: true,
-    activeAddProduct: true
+    path: '/admin/edit-product',
+    // formsCSS: true,
+    // productCSS: true,
+    // activeAddProduct: true
   });
 };
+exports.getEditProduct = (req, res, next) => {
+  res.render('admin/edit-product', {
+    pageTitle: 'Add Product',
+    path: '/admin/edit-product',
+    editing:editmode
+    // formsCSS: true,
+    // productCSS: true,
+    // activeAddProduct: true
+  })
+}
 
 exports.postAddProduct = (req, res, next) => {
   const title = req.body.title;
