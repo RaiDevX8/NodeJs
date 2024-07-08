@@ -1,4 +1,4 @@
-const {Product} = require('../model/cart')
+const {Product} = require('../../model/cart')
 
 
 // console.log(product);
