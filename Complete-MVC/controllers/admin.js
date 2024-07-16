@@ -8,7 +8,7 @@ exports.getAddProduct = (req, res, next) => {
     productCSS: true,
     activeAddProduct: true
   });
-};
+}
 
 exports.postAddProduct = (req, res, next) => {
   const title = req.body.title;
