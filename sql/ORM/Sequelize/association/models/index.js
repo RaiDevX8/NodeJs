@@ -30,4 +30,4 @@ sequelize
     console.error('Error syncing database:', err)
   })
 
-module.exports = { sequelize, User, Profile, Post, Group, UserGroup }
+module.exports = { sequelize, User, Profile, Post, Group, UserGroup}
