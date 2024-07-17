@@ -21,8 +21,7 @@ app.get('/', (req, res) => {
 })
 
 // MongoDB connection string
-const url = 'mongodb+srv://charan:100@cluster0.jduw5fr.mongodb.net/'
-
+const url ="your url";
 // Connect to MongoDB and start the server
 mongoose
   .connect(url)
