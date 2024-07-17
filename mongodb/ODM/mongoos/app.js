@@ -21,8 +21,12 @@ app.get('/', (req, res) => {
 })
 
 // MongoDB connection string
+<<<<<<< HEAD
 const url = ''
 
+=======
+const url ="your";
+>>>>>>> ae05e10b491eaa102f290786f59187d6176c05b9
 // Connect to MongoDB and start the server
 mongoose
   .connect(url)
