@@ -1,40 +1,44 @@
 const express = require('express')
-const mongoose = require('mongoose')
-const path = require('path')
-const adminRoutes = require('./controllers/admin')
-const app = express()
-const port = 3000
+const connectDB = require('./config/db')
+const productRoutes = require('./routes/productRoutes')
+const expressLayouts = require('express-ejs-layouts')
+require('dotenv').config()
+const path = require('path') // Import path module
 
-// Middleware to parse JSON and URL-encoded bodies
+const app = express()
+
+// Connect to MongoDB
+connectDB()
+
+// Middleware
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-// Serve static files from the 'public' directory
+// Set EJS as the view engine
+app.set('view engine', 'ejs')
+app.set('views', path.join(__dirname, 'views')) // Corrected views directory path
+
+// Use express-ejs-layouts middleware
+app.use(expressLayouts)
+app.set('layout', 'layout') // Specify the layout file name (without extension)
+
+// Serve static files from 'public' directory
 app.use(express.static(path.join(__dirname, 'public')))
 
-// Use the admin routes
-app.use(adminRoutes)
+// Routes
+app.use('/products', productRoutes)
 
-// Basic route
+// Home route
 app.get('/', (req, res) => {
-  res.send('Hello, world!')
+  res.render('index', { title: 'Home' })
 })
 
-// MongoDB connection string
-<<<<<<< HEAD
-const url = ''
+// 404 Error handling
+app.use((req, res, next) => {
+  res.status(404).render('error', { message: 'Page not found' })
+})
 
-=======
-const url ="your";
->>>>>>> ae05e10b491eaa102f290786f59187d6176c05b9
-// Connect to MongoDB and start the server
-mongoose
-  .connect(url)
-  .then(() => {
-    app.listen(port, () => {
-      console.log(`Server running at http://localhost:${port}/`)
-    })
-  })
-  .catch(err => {
-    console.log(err)
-  })
+const PORT = process.env.PORT || 5000
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`)
+})
