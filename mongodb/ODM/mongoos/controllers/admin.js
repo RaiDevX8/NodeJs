@@ -10,7 +10,7 @@ router.post('/admin/add-product', (req, res, next) => {
     price,
     imageUrl,
     description,
-  })
+  })  
 
   product
     .save()
