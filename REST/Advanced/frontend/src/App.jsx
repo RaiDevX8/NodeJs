@@ -2,17 +2,17 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
 const App = () => {
-   const [books, setBooks] = useState([])
-   const [title, setTitle] = useState('')
-   const [author, setAuthor] = useState('')
-   const [price, setPrice] = useState('')
-   const [error, setError] = useState('')
+  const [books, setBooks] = useState([])
+  const [title, setTitle] = useState('')
+  const [author, setAuthor] = useState('')
+  const [price, setPrice] = useState('')
+  const [error, setError] = useState('')
 
   useEffect(() => {
     axios
       .get('http://localhost:3000/posts')
       .then(res => {
-        console.log(res);
+        console.log(res)
         setBooks(res.data)
       })
       .catch(error => {
@@ -21,9 +21,14 @@ const App = () => {
       })
   }, [])
 
-  const handleAddBook=()=>
-  {
-    const newBook ={title,author,price};
+  const handleAddBook = () => {
+    if (!title || !author || !price) {
+      setError('Please fill out all fields.')
+      return
+    }
+
+    const newBook = { title, author, price: parseFloat(price) } // Ensure price is a number
+
     axios
       .post('http://localhost:3000/posts', newBook)
       .then(res => {
@@ -31,12 +36,14 @@ const App = () => {
         setTitle('')
         setAuthor('')
         setPrice('')
+        setError('')
       })
       .catch(error => {
         console.error('Error adding book:', error)
         setError('Failed to add book. Please try again later.')
       })
   }
+
   return (
     <div className="">
       <div>
@@ -74,6 +81,6 @@ const App = () => {
       </div>
     </div>
   )
-};
+}
 
-export default App;
+export default App
