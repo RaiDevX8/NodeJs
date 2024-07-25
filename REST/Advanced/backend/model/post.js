@@ -15,7 +15,8 @@ const postSchema = new mongoose.Schema({
     type: Number,
     min: 0, // Ensuring the price is non-negative
   },
-})
+},
+{timestamps:true})
 
 // Export the model
 module.exports = mongoose.model('Post', postSchema)
